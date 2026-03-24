@@ -128,7 +128,7 @@ export function Hero() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/jose-lozano-dev"
+              href="https://www.linkedin.com/in/jose-lozano-007851224/"
               target="_blank" rel="noopener noreferrer"
               className="font-[family-name:var(--font-jetbrains)] text-[10px] text-[#A09890] hover:text-[#1C1A17] transition-colors tracking-widest uppercase link-hover"
             >

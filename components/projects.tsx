@@ -5,17 +5,32 @@ import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
+    name: "Chrome Tab Recorder",
+    tagline: "Automated browser recording and AI transcription pipeline",
+    description:
+      "A resilient Chrome extension and Node.js backend system that captures high-resolution tab audio/video, streams data to IndexedDB for flat memory overhead, and executes a multi-stage background pipeline for Google Drive storage, AssemblyAI transcription, and automated documentation.",
+    type: "Personal Project",
+    year: "2026",
+    tech: ["Chrome Extension (MV3)", "Node.js", "BullMQ", "Redis", "Google Cloud APIs", "AssemblyAI"],
+    accentColor: "#4285F4",
+    highlight:
+      "Engineered a durable MV3 service worker architecture featuring resumable Google Drive uploads and a server-offline retry mechanism via chrome.alarms to ensure zero data loss during browser restarts.",
+    number: "01",
+    link: "https://github.com/joselozano2003/Chrome-Video-Recorder-Extension"
+  },
+  {
     name: "MapleQuest",
     tagline: "Social geolocation app for discovering Canada",
     description:
       "Native iOS social media app allowing users to discover and share geolocated points of interest across Canada. Sole architect of the cloud infrastructure: ECS Fargate, RDS PostgreSQL, S3, IAM, load balancers, Secrets Manager. CI/CD pipeline with GitHub Actions for zero-downtime rollouts.",
     type: "Team School Project",
-    year: "2024",
+    year: "2025",
     tech: ["Swift", "SwiftUI", "Django", "PostgreSQL", "AWS ECS", "S3", "GitHub Actions"],
     accentColor: "#C8956C",
     highlight:
       "Before writing a line of code, the team interviewed users across different demographics. Initial assumptions were almost entirely wrong; the shipped product looked nothing like the first idea.",
-    number: "01",
+    number: "02",
+      link: "https://github.com/joselozano2003/Maple-Quest-Front-End"
   },
   {
     name: "CSA GPT",
@@ -23,12 +38,40 @@ const projects = [
     description:
       "AI-powered compliance assistant providing code-compliant guidance across CSA, HVAC, plumbing, and electrical standards. Full RAG pipeline: PDF/text parsing, semantic chunking, embedding generation, and vector-indexed retrieval with optimized prompt engineering.",
     type: "Personal Project",
-    year: "2024",
+    year: "2025",
     tech: ["React", "TypeScript", "Node.js", "RAG", "Vector Databases", "LLMs"],
     accentColor: "#A09890",
     highlight:
       "Built a complete RAG pipeline from scratch: document ingestion, semantic chunking, embedding generation, and vector-indexed retrieval with domain-specific compliance prompting.",
-    number: "02",
+    number: "03",
+  },
+  {
+    name: "Party Fun Medley",
+    tagline: "Real-time game discovery and community synchronization",
+    description:
+      "A collaborative web application developed for a Web-Based Systems course, featuring a dynamic game catalog with live data updates and robust user authentication through a serverless architecture.",
+    type: "Team School Project",
+    year: "2023",
+    tech: ["Next.js", "Supabase", "PostgreSQL", "Webhooks", "TypeScript"],
+    accentColor: "#6366F1",
+    highlight:
+      "Orchestrated a team of six to implement a serverless backend using Supabase and Webhooks, achieving seamless real-time event synchronization and instant data propagation across all clients.",
+    number: "04",
+    link: "https://github.com/joselozano2003/SENG-513-Final"
+  },
+  {
+    name: "Talk-PDF",
+    tagline: "Conversational AI for intelligent document analysis",
+    description:
+      "A full-stack RAG (Retrieval-Augmented Generation) application that enables users to query PDF documents using natural language. It features a vector-indexed search pipeline for high-accuracy context retrieval.",
+    type: "Personal Project",
+    year: "2023",
+    tech: ["Next.js", "OpenAI", "Vector Databases", "Prisma", "AWS S3", "PostgreSQL"],
+    accentColor: "#EF4444",
+    highlight:
+      "Developed a custom RAG pipeline integrating OpenAI GPT-3.5 with a vector database for semantic similarity search, utilizing AWS S3 and Prisma ORM for scalable document and metadata management.",
+    number: "05",
+    link: "https://github.com/joselozano2003/talk-pdf"
   },
 ];
 
@@ -77,9 +120,14 @@ function ProjectCard({
   inView: boolean;
 }) {
   return (
+    
     <div
-      className={`group bg-[#F0EBE3] border border-black/5 rounded-sm overflow-hidden hover:border-black/10 hover:shadow-sm transition-all duration-400 flex flex-col reveal ${inView ? "visible" : ""}`}
-      style={{ transitionDelay: `${200 + index * 130}ms` }}
+      className={`group bg-[#F0EBE3] border border-black/5 rounded-sm overflow-hidden transition-all duration-400 flex flex-col reveal 
+        ${inView ? "visible" : ""} 
+        ${project.link ? "cursor-pointer hover:border-black/10 hover:shadow-sm" : "cursor-default"}`}
+      style={{ transitionDelay: `${200 + index * 130}ms` }} 
+      // Only assign the onClick handler if project.link exists
+      onClick={project.link ? () => window.open(project.link, "_blank") : undefined}
     >
       {/* Top accent line */}
       <div
@@ -108,7 +156,9 @@ function ProjectCard({
               {project.name}
             </h3>
           </div>
-          <ArrowUpRight className="w-4 h-4 text-[#A09890] group-hover:text-[#C8956C] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300 flex-shrink-0 mt-1" />
+          {project.link && (
+            <ArrowUpRight className="w-4 h-4 text-[#A09890] group-hover:text-[#C8956C] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300 flex-shrink-0 mt-1" />
+          )}
         </div>
 
         {/* Tagline */}
